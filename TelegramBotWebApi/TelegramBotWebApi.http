@@ -1,0 +1,11 @@
+@TelegramBotWebApi_HostAddress = http://localhost:5277
+
+GET {{TelegramBotWebApi_HostAddress}}/todos/
+Accept: application/json
+
+###
+
+GET {{TelegramBotWebApi_HostAddress}}/todos/1
+Accept: application/json
+
+###
