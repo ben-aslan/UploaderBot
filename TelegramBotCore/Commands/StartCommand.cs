@@ -43,7 +43,7 @@ public class StartCommand : Command, ICommand
 
         if (userOperationalClaim == EOperationClaim.Admin)
         {
-            _client.SendTextMessageAsync(message.Chat.Id, "سلام، خوش آمدید!🌹\n" + _message.GetByName("select-language"), replyMarkup: new ReplyKeyboardMarkup(new List<List<KeyboardButton>> {
+            _client.SendTextMessageAsync(message.Chat.Id, "سلام، خوش آمدید!🌹\n" + _message.Get(EMessage.WellcomeMessage), replyMarkup: new ReplyKeyboardMarkup(new List<List<KeyboardButton>> {
                 new() { new(_message.Get(EMessage.UploadVideo1)), new (_message.Get(EMessage.UploadVideo2)) }
             }));
             return;

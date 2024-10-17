@@ -11,8 +11,6 @@ using Business.Abstract;
 using System.Diagnostics;
 using Telegram.Bot;
 using TelegramBotCore.LangService.Concrete;
-using Entities.Enums;
-using Business.Constants;
 using TelegramBotCore.VideoMessages.Abstract;
 
 namespace TelegramBotAPI.Handle;

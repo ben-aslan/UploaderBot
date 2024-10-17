@@ -11,7 +11,6 @@ using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System.Reflection;
 using Telegram.Bot.Types.Enums;
-using TelegramBotAPI.BotConfiguration;
 using TelegramBotAPI.BotConfiguration.Abstract;
 using TelegramBotAPI.DependencyResolvers.Abstract;
 using TelegramBotCore;
