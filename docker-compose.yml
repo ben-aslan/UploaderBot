@@ -1,0 +1,9 @@
+services:
+  marzban:
+    image: ghcr.io/taha-hasemi/uploaderbot:latest
+    restart: always
+    environment:
+      PORT: 5031
+    network_mode: host
+    volumes:
+      - /TelegramBotWebApi/appsettings.json:/opt/uploaderbot/appsettings.json
