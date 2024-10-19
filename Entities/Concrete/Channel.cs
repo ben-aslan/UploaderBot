@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Entities.Concrete;
 
-public class Bot : IEntity
+public class Channel:IEntity
 {
     [Key]
     public int Id { get; set; }
@@ -14,17 +14,9 @@ public class Bot : IEntity
     [MaxLength(100)]
     public string UserName { get; set; } = null!;
 
-    [MaxLength(1000)]
-    public string Token { get; set; } = null!;
-
-    public long BotChatId { get; set; }
-
-    [MaxLength(2000)]
-    public string? WebhookUrl { get; set; }
+    public long ChatId { get; set; }
 
     public bool UploadManager { get; set; } = false;
     public bool Active { get; set; } = true;
     public bool Status { get; set; } = true;
-
-    public List<BotVideo> BotVideos { get; set; } = null!;
 }

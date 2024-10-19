@@ -22,6 +22,9 @@ public class EfContext : DbContext
     public DbSet<UserStep> UserSteps { get; set; }
     public DbSet<Bot> Bots { get; set; }
     public DbSet<Language> Languages { get; set; }
+    public DbSet<Video> Videos { get; set; }
+    public DbSet<Photo> Photos { get; set; }
+    public DbSet<BotVideo> BotVideos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
