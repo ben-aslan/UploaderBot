@@ -109,13 +109,13 @@ public class UpdateHandle : IHandle
             {
                 var userStep = _userStepService.Get(update.Message!.From!.Id);
                 string key = userStep.StepId.ToString() + "_"
-                    + userStep.StepIndexId.ToString();
+                    + userStep.StepIndexId.ToString() + "_" + ((int)update.Message!.Chat.Type).ToString();
                 var process = scope.ResolveKeyed<IProcess>(key);
-                var result = process.Execute(update);
+                process.Execute(update);
             }
             catch (Exception)
             {
-
+                //throw;
             }
         }
     }
@@ -130,7 +130,7 @@ public class UpdateHandle : IHandle
             {
                 var userStep = _userStepService.Get(update.Message!.From!.Id);
                 string key = userStep.StepId.ToString() + "_"
-                    + userStep.StepIndexId.ToString();
+                    + userStep.StepIndexId.ToString() + "_" + ((int)update.Message!.Chat.Type).ToString();
                 var VideoMessage = scope.ResolveKeyed<IVideoMessage>(key);
                 VideoMessage.Execute(update, new TelegramBotClient(_botService.GetTokenByChatId(botId)), new JsonMessageManager(_userService.GetUserLang(update.Message!.From?.Id ?? update.Message!.Chat.Id).Data, _environment));
             }
@@ -151,7 +151,7 @@ public class UpdateHandle : IHandle
             {
                 var userStep = _userStepService.Get(update.Message!.From!.Id);
                 string key = userStep.StepId.ToString() + "_"
-                    + userStep.StepIndexId.ToString();
+                    + userStep.StepIndexId.ToString() + "_" + ((int)update.Message!.Chat.Type).ToString();
                 var voiceMessage = scope.ResolveKeyed<IVoiceMessage>(key);
                 var result = voiceMessage.Execute(update);
             }

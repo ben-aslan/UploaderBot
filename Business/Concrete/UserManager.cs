@@ -52,7 +52,7 @@ public class UserManager : IUserService
             UserId = user.Id,
             OperationClaimId = (int)EOperationClaim.User
         }));
-        Task.WhenAll(tasks);
+        Task.WhenAll(tasks).Wait();
         return new SuccessResult();
     }
 

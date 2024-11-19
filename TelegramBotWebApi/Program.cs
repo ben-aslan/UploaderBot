@@ -105,32 +105,29 @@ api.MapPost("/update", (
 {
     if (update.Type == Telegram.Bot.Types.Enums.UpdateType.Message)
     {
-        if (update.Message!.Chat.Type == Telegram.Bot.Types.Enums.ChatType.Private)
-        {
-            if (update.Message.Type == Telegram.Bot.Types.Enums.MessageType.Video)
-                _handle.HandleVideoMessage(update, botId);
+        if (update.Message.Type == Telegram.Bot.Types.Enums.MessageType.Video)
+            _handle.HandleVideoMessage(update, botId);
 
-            if (update.Message.Type == Telegram.Bot.Types.Enums.MessageType.Voice)
+        if (update.Message.Type == Telegram.Bot.Types.Enums.MessageType.Voice)
+        {
+            _handle.HandleVoiceMessage(update);
+        }
+        else if (update.Message.Type == Telegram.Bot.Types.Enums.MessageType.Text)
+        {
+            if (_handle.HandleKeyboardButton(update))
             {
-                _handle.HandleVoiceMessage(update);
+                return Results.Ok();
             }
-            else if (update.Message.Type == Telegram.Bot.Types.Enums.MessageType.Text)
+            if (update.Message.Entities != null)
             {
-                if (_handle.HandleKeyboardButton(update))
+                if (update.Message.Entities[0].Type == Telegram.Bot.Types.Enums.MessageEntityType.BotCommand)
                 {
-                    return Results.Ok();
+                    _handle.HandleCommand(update, botId);
                 }
-                if (update.Message.Entities != null)
-                {
-                    if (update.Message.Entities[0].Type == Telegram.Bot.Types.Enums.MessageEntityType.BotCommand)
-                    {
-                        _handle.HandleCommand(update, botId);
-                    }
-                }
-                else
-                {
-                    _handle.HandleMessage(update);
-                }
+            }
+            else
+            {
+                _handle.HandleMessage(update);
             }
         }
     }

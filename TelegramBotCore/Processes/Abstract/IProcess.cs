@@ -4,5 +4,5 @@ namespace TelegramBotCore.Processes.Abstract;
 
 public interface IProcess
 {
-    Task Execute(Update update);
+    void Execute(Update update);
 }

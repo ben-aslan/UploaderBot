@@ -2,5 +2,5 @@
 
 public enum EStep
 {
-    Home = 1, Video = 2
+    Home = 1, Video = 2, GroupVideoFirstAlgorithm, GroupVideoSecondAlgorithm
 }
