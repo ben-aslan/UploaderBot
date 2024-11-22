@@ -25,6 +25,7 @@ public class EfContext : DbContext
     public DbSet<Video> Videos { get; set; }
     public DbSet<Photo> Photos { get; set; }
     public DbSet<BotVideo> BotVideos { get; set; }
+    public DbSet<Group> Groups { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
