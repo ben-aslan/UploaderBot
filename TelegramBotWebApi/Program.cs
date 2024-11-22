@@ -93,7 +93,7 @@ var api = app.MapGroup("/api");
 
 api.MapGet($"/setWebhook", async (string botToken, string url) =>
 {
-    await new TelegramBotClient(botToken).SetWebhookAsync(url + "/api/update?botId=" + botToken.Split(':')[0]);
+    await new TelegramBotClient(botToken).SetWebhook(url + "/api/update?botId=" + botToken.Split(':')[0]);
     return Results.Ok();
 }).WithName("TelegramSetWebhook");
 
@@ -105,7 +105,7 @@ api.MapPost("/update", (
 {
     if (update.Type == Telegram.Bot.Types.Enums.UpdateType.Message)
     {
-        if (update.Message.Type == Telegram.Bot.Types.Enums.MessageType.Video)
+        if (update.Message!.Type == Telegram.Bot.Types.Enums.MessageType.Video)
             _handle.HandleVideoMessage(update, botId);
 
         if (update.Message.Type == Telegram.Bot.Types.Enums.MessageType.Voice)

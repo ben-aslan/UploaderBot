@@ -35,7 +35,7 @@ public class BotConfiguration : IBotConfiguration
 
         await Parallel.ForEachAsync(bots, ct, async (bot, ct) =>
         {
-            await new TelegramBotClient(bot.Token).SetWebhookAsync(string.Format(bot.WebhookUrl + "{0}", "/api/handler?botId=" + bot.BotChatId));
+            await new TelegramBotClient(bot.Token).SetWebhook(string.Format(bot.WebhookUrl + "{0}", "/api/handler?botId=" + bot.BotChatId));
 
             ct.ThrowIfCancellationRequested();
             progressReport.PercentageComplete += perc;

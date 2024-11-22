@@ -28,7 +28,7 @@ public class SetLangCallbackQuery : ICallbackQuery
         var lang = (ELang)Convert.ToInt32((update.CallbackQuery!.Data ?? " ").Split(" ")[1]);
         _userService.SetUserLang(lang, update.CallbackQuery.From.Id);
 
-        _client.DeleteMessageAsync(update.CallbackQuery.From.Id, update.CallbackQuery.Message!.MessageId);
+        _client.DeleteMessage(update.CallbackQuery.From.Id, update.CallbackQuery.Message!.MessageId);
 
         List<List<KeyboardButton>> keyboardButtons = new() {
             new() { new("🛍 خرید سرویس"),new("⚖️ تست سرویس") },
@@ -37,6 +37,6 @@ public class SetLangCallbackQuery : ICallbackQuery
             new(){new("☎️ پشتیبانی") }
         };
 
-        _client.SendTextMessageAsync(update.CallbackQuery.From.Id, new JsonMessageManager(lang, _environment).GetByName("wellcome-message"), replyMarkup: new ReplyKeyboardMarkup(keyboardButtons));
+        _client.SendMessage(update.CallbackQuery.From.Id, new JsonMessageManager(lang, _environment).GetByName("wellcome-message"), replyMarkup: new ReplyKeyboardMarkup(keyboardButtons));
     }
 }
