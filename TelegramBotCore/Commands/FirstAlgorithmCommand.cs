@@ -28,7 +28,7 @@ public class FirstAlgorithmCommand : Command, ICommand
         if (!(_botService.IsUploadManager(_client.BotId ?? 0) && _userService.HaveClaim(update.Message!.From!.Id, EOperationClaim.Admin)))
             return;
 
-        _userStepService.Set(update.Message!.From!.Id, EStep.GroupVideoFirstAlgorithm, EStepIndex.Home);
+        _userStepService.Set(update.Message!.From!.Id, EStep.Video, EStepIndex.UploadWithSameFileId);
 
         _client.SendTextMessageAsync(update.Message.Chat.Id, _message.Get(EMessage.UploadVideo1));
     }
