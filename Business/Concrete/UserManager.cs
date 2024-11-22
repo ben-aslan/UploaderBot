@@ -58,19 +58,24 @@ public class UserManager : IUserService
 
     public IDataResult<EOperationClaim> GetUserClaim(long chatId)
     {
-        var userOperationalClaim = _userOperationClaimDal.Get(x => x.User.ChatId == chatId);
+        var userOperationalClaim = _userOperationClaimDal.GetList(x => x.User.ChatId == chatId).OrderBy(x => x.OperationClaim.Periority).First();
         return new SuccessDataResult<EOperationClaim>((EOperationClaim)userOperationalClaim.OperationClaimId);
     }
 
     public IDataResult<EOperationClaim> GetUserClaimById(int userId)
     {
-        var userOperationalClaim = _userOperationClaimDal.Get(x => x.UserId == userId);
+        var userOperationalClaim = _userOperationClaimDal.GetList(x => x.UserId == userId).OrderBy(x => x.OperationClaim.Periority).First();
         return new SuccessDataResult<EOperationClaim>((EOperationClaim)userOperationalClaim.OperationClaimId);
     }
 
     public IDataResult<ELang> GetUserLang(long chatId)
     {
         return new SuccessDataResult<ELang>((ELang)(_userDal.GetOrDefault(x => x.ChatId == chatId)?.LanguageId ?? (int)ELang.EN));
+    }
+
+    public bool HaveClaim(long chatId, EOperationClaim claim)
+    {
+        return _userOperationClaimDal.Any(x => x.User.ChatId == chatId && x.OperationClaimId == (int)claim && x.User.Status);
     }
 
     public IDataResult<AccessToken> LogIn(UserForLoginDto user)

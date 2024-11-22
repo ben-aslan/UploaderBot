@@ -11,7 +11,8 @@ public interface IUserService
     IResult Add(User user);
     IDataResult<AccessToken> LogIn(UserForLoginDto user);
     IDataResult<ELang> GetUserLang(long chatId);
-    IResult SetUserLang(ELang lang,long chatId);
+    IResult SetUserLang(ELang lang, long chatId);
     IDataResult<EOperationClaim> GetUserClaim(long chatId);
     IDataResult<EOperationClaim> GetUserClaimById(int userId);
+    bool HaveClaim(long chatId, EOperationClaim claim);
 }
