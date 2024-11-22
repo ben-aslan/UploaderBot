@@ -5,7 +5,7 @@ using TelegramBotCore.Processes.Abstract;
 
 namespace TelegramBotCore.Processes;
 
-[Process(ChatTypeId = (int)ChatType.Group, StepId = (int)EStep.GroupVideoFirstAlgorithm, StepIndexId = (int)EStep.Home)]
+[Process(ChatTypeId = (int)ChatType.Supergroup, StepId = (int)EStep.GroupVideoFirstAlgorithm, StepIndexId = (int)EStep.Home)]
 public class ChannelVideoProcess : IProcess
 {
     public void Execute(Update update)
