@@ -45,7 +45,7 @@ public class UserCore<TUserOperationClaim> : IEntity
 
     public string? PhoneNumber { get; set; }
 
-    public bool Status { get; set; }
+    public bool Status { get; set; } = true;
 
 
     public List<TUserOperationClaim> UserOperationClaims { get; set; } = null!;
