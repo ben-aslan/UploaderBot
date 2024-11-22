@@ -6,7 +6,7 @@ using TelegramBotCore.VideoMessages.Abstract;
 
 namespace TelegramBotCore.VideoMessages;
 
-[VideoMessage(StepId = (int)EStep.Video, StepIndexId = (int)EStepIndex.UploadVideoWithSameFileId)]
+[VideoMessage(StepId = (int)EStep.Video, StepIndexId = (int)EStepIndex.Home)]
 public class UploadVideoWithSameFileId : VideoMessage, IVideoMessage
 {
     public void Execute(Update update, ITelegramBotClient _client = null, IMessageService _message = null)
