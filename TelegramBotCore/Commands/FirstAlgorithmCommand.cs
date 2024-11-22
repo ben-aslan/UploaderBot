@@ -9,24 +9,29 @@ using TelegramBotCore.Commands.Abstract;
 
 namespace TelegramBotCore.Commands;
 
-[Command(ChatType = ChatType.Supergroup, Name = "/firstalgorithm")]
+[Command(Name = "/firstalgorithm")]
 public class FirstAlgorithmCommand : Command, ICommand
 {
     IUserService _userService;
     IUserStepService _userStepService;
+    IBotService _botService;
 
-    public FirstAlgorithmCommand(IUserService userService, IUserStepService userStepService)
+    public FirstAlgorithmCommand(IUserService userService, IUserStepService userStepService, IBotService botService)
     {
         _userService = userService;
         _userStepService = userStepService;
+        _botService = botService;
     }
 
     public void Execute(Update update, ITelegramBotClient _client = null!, IMessageService _message = null!)
     {
+        if (!(_botService.IsUploadManager(_client.BotId ?? 0) && _userService.HaveClaim(update.Message!.From!.Id, EOperationClaim.Admin)))
+            return;
+
         _userStepService.Set(update.Message!.From!.Id, EStep.GroupVideoFirstAlgorithm, EStepIndex.Home);
 
-        if (_userService.HaveClaim(update.Message!.From!.Id, EOperationClaim.Admin))
-            _client.SendTextMessageAsync(update.Message.Chat.Id, _message.Get(EMessage.UploadVideo1));
+        _client.SendTextMessageAsync(update.Message.Chat.Id, _message.Get(EMessage.UploadVideo1));
+
         return;
     }
 }
