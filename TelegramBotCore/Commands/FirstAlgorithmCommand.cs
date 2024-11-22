@@ -31,7 +31,5 @@ public class FirstAlgorithmCommand : Command, ICommand
         _userStepService.Set(update.Message!.From!.Id, EStep.GroupVideoFirstAlgorithm, EStepIndex.Home);
 
         _client.SendTextMessageAsync(update.Message.Chat.Id, _message.Get(EMessage.UploadVideo1));
-
-        return;
     }
 }
