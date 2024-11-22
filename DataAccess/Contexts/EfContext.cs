@@ -30,6 +30,9 @@ public class EfContext : DbContext
     {
         #region Step datas
         modelBuilder.Entity<Step>().HasData(new Step() { Id = (int)EStep.Home, Name = "Home", Description = "Home" });
+        modelBuilder.Entity<Step>().HasData(new Step() { Id = (int)EStep.GroupVideoFirstAlgorithm, Name = "GroupVideoFirstAlgorithm", Description = "GroupVideoFirstAlgorithm" });
+        modelBuilder.Entity<Step>().HasData(new Step() { Id = (int)EStep.GroupVideoSecondAlgorithm, Name = "GroupVideoSecondAlgorithm", Description = "GroupVideoSecondAlgorithm" });
+        modelBuilder.Entity<Step>().HasData(new Step() { Id = (int)EStep.Video, Name = "Video", Description = "Video" });
         #endregion
 
         #region StepIndex datas
