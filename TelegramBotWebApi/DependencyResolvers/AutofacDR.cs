@@ -9,6 +9,7 @@ using Core.Utilities.Security.Jwt;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using Microsoft.AspNetCore.SignalR;
 using System.Reflection;
 using Telegram.Bot.Types.Enums;
 using TelegramBotAPI.BotConfiguration.Abstract;
@@ -161,6 +162,9 @@ public class AutofacDR : IDependencyResolver
 
         builder.RegisterType<EfBotDal>().As<IBotDal>().SingleInstance();
         builder.RegisterType<BotManager>().As<IBotService>().SingleInstance();
+
+        builder.RegisterType<EfGroupDal>().As<IGroupDal>().SingleInstance();
+        builder.RegisterType<GroupManager>().As<IGroupService>().SingleInstance();
 
         builder.RegisterType<EfLanguageDal>().As<ILanguageDal>().SingleInstance();
 
