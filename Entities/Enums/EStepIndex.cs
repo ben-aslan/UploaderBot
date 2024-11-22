@@ -2,5 +2,5 @@
 
 public enum EStepIndex
 {
-    Home = 1
+    Home = 1,UploadWithSameFileId
 }

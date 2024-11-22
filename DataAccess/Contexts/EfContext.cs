@@ -37,6 +37,7 @@ public class EfContext : DbContext
 
         #region StepIndex datas
         modelBuilder.Entity<StepIndex>().HasData(new StepIndex() { Id = (int)EStepIndex.Home, Name = "Home", Description = "Home" });
+        modelBuilder.Entity<StepIndex>().HasData(new StepIndex() { Id = (int)EStepIndex.UploadWithSameFileId, Name = "UploadWithSameFileId", Description = "UploadWithSameFileId" });
         #endregion
 
         #region OperationClaim datas
