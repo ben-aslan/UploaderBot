@@ -25,11 +25,11 @@ public class FirstAlgorithmCommand : Command, ICommand
 
     public void Execute(Update update, ITelegramBotClient _client = null!, IMessageService _message = null!)
     {
-        if (!(_botService.IsUploadManager(_client.BotId ?? 0) && _userService.HaveClaim(update.Message!.From!.Id, EOperationClaim.Admin)))
+        if (!(_botService.IsUploadManager(_client.BotId) && _userService.HaveClaim(update.Message!.From!.Id, EOperationClaim.Admin)))
             return;
 
         _userStepService.Set(update.Message!.From!.Id, EStep.Video, EStepIndex.UploadWithSameFileId);
 
-        _client.SendTextMessageAsync(update.Message.Chat.Id, _message.Get(EMessage.UploadVideo1));
+        _client.SendMessage(update.Message.Chat.Id, _message.Get(EMessage.UploadVideo1));
     }
 }
