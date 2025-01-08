@@ -25,4 +25,8 @@
     <ProjectReference Include="..\TelegramBotCore\TelegramBotCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>
