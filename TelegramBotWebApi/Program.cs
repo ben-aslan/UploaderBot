@@ -17,7 +17,6 @@ using System.Text.Json.Serialization;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Microsoft.AspNetCore.Mvc;
-using TelegramBotWebApi.Models;
 
 var builder = WebApplication.CreateSlimBuilder(args);
 
