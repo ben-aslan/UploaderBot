@@ -31,10 +31,7 @@ builder.Services.AddSingleton<IDependencyResolver, AutofacDR>();
 
 builder.Services.AddScoped<IHandle, UpdateHandle>();
 
-builder.Services.ConfigureHttpJsonOptions(options =>
-{
-    options.SerializerOptions.TypeInfoResolverChain.Insert(0, AppJsonSerializerContext.Default);
-});
+builder.Services.ConfigureTelegramBot<JsonOptions>(opt => opt.JsonSerializerOptions);
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -99,7 +96,7 @@ api.MapGet($"/setWebhook", async (string botToken, string url) =>
 
 api.MapPost("/update", (
      [FromServices] IHandle _handle,
-     NewtonsoftJsonUpdate update,
+     Update update,
      [FromQuery] long botId
     ) =>
 {
@@ -146,10 +143,3 @@ api.MapPost("/update", (
 .WithName("TelegramWebhook");
 
 app.Run();
-
-
-[JsonSerializable(typeof(NewtonsoftJsonUpdate))]
-internal partial class AppJsonSerializerContext : JsonSerializerContext
-{
-
-}
