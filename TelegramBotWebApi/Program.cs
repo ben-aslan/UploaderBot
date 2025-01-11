@@ -17,6 +17,8 @@ using System.Text.Json.Serialization;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Microsoft.AspNetCore.Mvc;
+using Business.Abstract;
+using System.Security.Policy;
 
 var builder = WebApplication.CreateSlimBuilder(args);
 
@@ -92,6 +94,12 @@ api.MapGet($"/setWebhook", async (string botToken, string url) =>
     await new TelegramBotClient(botToken).SetWebhook(url + "/api/update?botId=" + botToken.Split(':')[0]);
     return Results.Ok();
 }).WithName("TelegramSetWebhook");
+
+api.MapGet($"/setAllWebhooks", ([FromServices] IBotService _botService) =>
+{
+    _botService.GetActiveBots().ForEach(async x => { await new TelegramBotClient(x.Token).SetWebhook(x.WebhookUrl + "/api/update?botId=" + x.Token.Split(':')[0]); });
+    return Results.Ok();
+}).WithName("TelegramSetAllWebhooks");
 
 api.MapPost("/update", (
      [FromServices] IHandle _handle,
