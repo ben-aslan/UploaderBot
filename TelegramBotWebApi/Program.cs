@@ -19,6 +19,8 @@ using Telegram.Bot.Types;
 using Microsoft.AspNetCore.Mvc;
 using Business.Abstract;
 using System.Security.Policy;
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
 
 var builder = WebApplication.CreateSlimBuilder(args);
 
@@ -31,6 +33,13 @@ builder.Services.AddSingleton<IWebHostEnvironment>(builder.Environment);
 builder.Services.AddSingleton<IDependencyResolver, AutofacDR>();
 
 builder.Services.AddScoped<IHandle, UpdateHandle>();
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+builder.Host.ConfigureContainer<ContainerBuilder>(b =>
+{
+    b.RegisterModule(new AutofacDR(builder.Environment, builder.Configuration));
+});
 
 builder.Services.ConfigureTelegramBot<JsonOptions>(opt => opt.JsonSerializerOptions);
 
