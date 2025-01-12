@@ -21,6 +21,12 @@ public class Video : IEntity
 
     public int FileSize { get; set; }
 
+    [MaxLength(500)]
+    public string FileId { get; set; } = null!;
+
+    [MaxLength(1000)]
+    public string FileUniqueId { get; set; } = null!;
+
     public DateTime CreateDate { get; set; } = DateTime.Now;
 
 
