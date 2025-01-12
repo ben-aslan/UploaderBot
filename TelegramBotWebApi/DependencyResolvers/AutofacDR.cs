@@ -202,6 +202,11 @@ public class AutofacDR : Autofac.Module, IDependencyResolver
         builder.RegisterType<EfGroupDal>().As<IGroupDal>().SingleInstance();
         builder.RegisterType<GroupManager>().As<IGroupService>().SingleInstance();
 
+        builder.RegisterType<EfBotVideoDal>().As<IBotVideoDal>().SingleInstance();
+
+        builder.RegisterType<EfVideoDal>().As<IVideoDal>().SingleInstance();
+        builder.RegisterType<VideoManager>().As<IVideoService>().SingleInstance();
+
         builder.RegisterType<EfLanguageDal>().As<ILanguageDal>().SingleInstance();
 
         //builder.RegisterType<InlineKeyboardManager>().As<IInlineKeyboardService>().SingleInstance();
